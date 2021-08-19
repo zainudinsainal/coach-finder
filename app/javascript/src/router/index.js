@@ -10,7 +10,7 @@ import NotFound from '../pages/NotFound.vue'
 const routes = [
   { path: '/', redirect: '/coaches' },
   { path: '/coaches', component: CoachesList },
-  { path: '/coaches/:id', component: CoachDetail, childern: [
+  { path: '/coaches/:id', component: CoachDetail, children: [
     { path: 'contact', component: ContactCoach },
   ] },
   { path: '/register', component: CoachRegistration },
