@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      // userIsCoach: false, if sign in/up alternatives
       coaches: [
         {
           id: 'c1',
