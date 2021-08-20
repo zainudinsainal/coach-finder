@@ -12,9 +12,11 @@ class Api::CoachesController < Api::ApiController
 
   def new
     @coach = Coach.new
+    render json: @coach
   end
 
   def create
+    p params
     @coach = Coach.new(coach_params)
 
     if @coach.save
