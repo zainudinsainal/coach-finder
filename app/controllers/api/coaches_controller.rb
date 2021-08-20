@@ -1,11 +1,13 @@
-class Api::CoachesController < Api::ApplicationController
+class Api::CoachesController < Api::ApiController
   before_action :set_coach, only: [:show, :edit, :update]
 
   def index
     @coaches = Coach.all
+    render json: @coaches
   end
 
   def show
+    render json: @coach
   end
 
   def new

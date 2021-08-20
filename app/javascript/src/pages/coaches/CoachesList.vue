@@ -5,7 +5,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <base-button v-if="!isCoach" link to="/register">Register as Coach</base-button>
       </div>
       <ul v-if="hasCoaches">
@@ -13,9 +13,9 @@
           v-for="coach in filteredCoaches"
           :key="coach.id"
           :id="coach.id"
-          :first-name="coach.firstName"
-          :last-name="coach.lastName"
-          :rate="coach.hourlyRate"
+          :firstName="coach.first_name"
+          :lastName="coach.last_name"
+          :rate="coach.hourly_rate"
           :areas="coach.areas">
         </coach-item>
       </ul>
@@ -65,9 +65,15 @@ export default {
       return this.$store.getters['coaches/hasCoaches'];
     }
   },
+  created() {
+    this.loadCoaches()
+  },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+    },
+    loadCoaches() {
+      this.$store.dispatch('coaches/loadCoaches');
     }
   }
 }

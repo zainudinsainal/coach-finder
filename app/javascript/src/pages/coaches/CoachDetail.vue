@@ -30,20 +30,18 @@
 <script>
 export default {
   props: ['id'],
-  data() {
-    return {
-      selectedCoach: null
-    }
-  },
   computed: {
+    selectedCoach() {
+      return this.$store.getters['coaches/coach']
+    },
     fullName() {
-      return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
+      return this.selectedCoach.first_name + ' ' + this.selectedCoach.last_name;
     },
     areas() {
       return this.selectedCoach.areas;
     },
     rate() {
-      return this.selectedCoach.hourlyRate;
+      return this.selectedCoach.hourly_rate;
     },
     description() {
       return this.selectedCoach.description;
@@ -53,9 +51,12 @@ export default {
     }
   },
   created() {
-    this.selectedCoach = this.$store.getters['coaches/coaches'].find(
-      (coach) => coach.id === this.id
-    )
+    this.loadCoach();
   },
+  methods: {
+    loadCoach() {
+      this.$store.dispatch('coaches/loadCoach', this.id);
+    }
+  }
 }
 </script>
